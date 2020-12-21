@@ -36,13 +36,15 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jlbMain = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jlbSinhVien = new javax.swing.JLabel();
+        jlbBook = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jlbLopHoc = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jlbKhoaHoc = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jlbThongKe = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jlbUser = new javax.swing.JLabel();
         jpnView = new javax.swing.JPanel();
         jDesktopPane1 = new javax.swing.JDesktopPane();
 
@@ -107,13 +109,13 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(0, 102, 204));
 
-        jlbSinhVien.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jlbSinhVien.setForeground(new java.awt.Color(255, 255, 255));
-        jlbSinhVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon_sinh_vien.png"))); // NOI18N
-        jlbSinhVien.setText("Quản Lý Sách");
-        jlbSinhVien.addMouseListener(new java.awt.event.MouseAdapter() {
+        jlbBook.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jlbBook.setForeground(new java.awt.Color(255, 255, 255));
+        jlbBook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon_sinh_vien.png"))); // NOI18N
+        jlbBook.setText("Quản Lý Sách");
+        jlbBook.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jlbSinhVienMouseClicked(evt);
+                jlbBookMouseClicked(evt);
             }
         });
 
@@ -123,14 +125,14 @@ public class MainJFrame extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jlbSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jlbBook, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jlbSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlbBook, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -140,6 +142,11 @@ public class MainJFrame extends javax.swing.JFrame {
         jlbLopHoc.setForeground(new java.awt.Color(255, 255, 255));
         jlbLopHoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon_lop_hoc.png"))); // NOI18N
         jlbLopHoc.setText("Quản Lý Nhân Viên");
+        jlbLopHoc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlbLopHocMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -200,9 +207,38 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jlbThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jPanel7.setBackground(new java.awt.Color(0, 102, 204));
+
+        jlbUser.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jlbUser.setForeground(new java.awt.Color(255, 255, 255));
+        jlbUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon_thong_ke.png"))); // NOI18N
+        jlbUser.setText("Quản lý người đọc");
+        jlbUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlbUserMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlbUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlbUser, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -218,7 +254,8 @@ public class MainJFrame extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jpnDanhMucLayout.setVerticalGroup(
@@ -235,7 +272,9 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 22, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 55, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jpnDanhMuc);
@@ -250,7 +289,7 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 547, Short.MAX_VALUE)
+            .addGap(0, 663, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jpnViewLayout = new javax.swing.GroupLayout(jpnView);
@@ -261,7 +300,7 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         jpnViewLayout.setVerticalGroup(
             jpnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
         );
 
         jSplitPane1.setRightComponent(jpnView);
@@ -274,24 +313,35 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
+            .addComponent(jSplitPane1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jlbSinhVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbSinhVienMouseClicked
+    private void jlbBookMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbBookMouseClicked
         // TODO add your handling code here:
         ListBook lb = new ListBook();
         lb.setVisible(true);
         jDesktopPane1.add(lb);
-    }//GEN-LAST:event_jlbSinhVienMouseClicked
+    }//GEN-LAST:event_jlbBookMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jlbLopHocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbLopHocMouseClicked
+        
+        ListStaff lb = new ListStaff();
+        lb.setVisible(true);
+        jDesktopPane1.add(lb);// TODO add your handling code here:
+    }//GEN-LAST:event_jlbLopHocMouseClicked
+
+    private void jlbUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbUserMouseClicked
+        ListUser lb = new ListUser();
+        lb.setVisible(true);
+        jDesktopPane1.add(lb);
+    }//GEN-LAST:event_jlbUserMouseClicked
 
     /**
      * @param args the command line arguments
@@ -306,12 +356,14 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JLabel jlbBook;
     private javax.swing.JLabel jlbKhoaHoc;
     private javax.swing.JLabel jlbLopHoc;
     private javax.swing.JLabel jlbMain;
-    private javax.swing.JLabel jlbSinhVien;
     private javax.swing.JLabel jlbThongKe;
+    private javax.swing.JLabel jlbUser;
     private javax.swing.JPanel jpnDanhMuc;
     private javax.swing.JPanel jpnView;
     // End of variables declaration//GEN-END:variables
