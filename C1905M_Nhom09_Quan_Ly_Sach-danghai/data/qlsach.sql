@@ -245,3 +245,33 @@ go
 insert into users(name,address) values 
 ('User1','address1')
 go
+CREATE PROC proc_listNxb
+AS
+BEGIN
+	SELECT * FROM nxb
+END
+GO
+CREATE PROCEDURE proc_createNxb
+@name nvarchar(100),
+@address nvarchar(100),
+@email nvarchar(100)
+AS
+BEGIN
+	Insert into nxb(name,address,email)
+	VALUES(@name,@address,@email)
+END
+GO
+CREATE PROCEDURE proc_deleteNxb
+@id int
+AS
+BEGIN
+  DELETE FROM nxb WHERE id = @id
+END
+GO
+CREATE PROCEDURE proc_editNxb
+@id int, @name nvarchar(100), @address nvarchar(100), @email nvarchar(100)
+AS
+BEGIN
+	update nxb set name = @name, address = @address, email = @email  where id = @id
+END
+GO

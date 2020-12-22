@@ -45,6 +45,8 @@ public class MainJFrame extends javax.swing.JFrame {
         jlbThongKe = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jlbUser = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        javax.swing.JLabel jlbNxb = new javax.swing.JLabel();
         jpnView = new javax.swing.JPanel();
         jDesktopPane1 = new javax.swing.JDesktopPane();
 
@@ -242,6 +244,35 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel8.setBackground(new java.awt.Color(0, 102, 204));
+
+        jlbNxb.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jlbNxb.setForeground(new java.awt.Color(255, 255, 255));
+        jlbNxb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon_thong_ke.png"))); // NOI18N
+        jlbNxb.setText("Quản lý nhà xuất bản");
+        jlbNxb.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlbNxbMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlbNxb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlbNxb, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jpnDanhMucLayout = new javax.swing.GroupLayout(jpnDanhMuc);
         jpnDanhMuc.setLayout(jpnDanhMucLayout);
         jpnDanhMucLayout.setHorizontalGroup(
@@ -255,7 +286,8 @@ public class MainJFrame extends javax.swing.JFrame {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jpnDanhMucLayout.setVerticalGroup(
@@ -274,7 +306,9 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 55, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 109, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jpnDanhMuc);
@@ -289,7 +323,7 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 663, Short.MAX_VALUE)
+            .addGap(0, 828, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jpnViewLayout = new javax.swing.GroupLayout(jpnView);
@@ -300,7 +334,7 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         jpnViewLayout.setVerticalGroup(
             jpnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 828, Short.MAX_VALUE)
         );
 
         jSplitPane1.setRightComponent(jpnView);
@@ -343,6 +377,13 @@ public class MainJFrame extends javax.swing.JFrame {
         jDesktopPane1.add(lb);
     }//GEN-LAST:event_jlbUserMouseClicked
 
+    private void jlbNxbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbNxbMouseClicked
+        // TODO add your handling code here:
+        ListNxb lb = new ListNxb();
+        lb.setVisible(true);
+        jDesktopPane1.add(lb);
+    }//GEN-LAST:event_jlbNxbMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -357,6 +398,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel jlbBook;
     private javax.swing.JLabel jlbKhoaHoc;

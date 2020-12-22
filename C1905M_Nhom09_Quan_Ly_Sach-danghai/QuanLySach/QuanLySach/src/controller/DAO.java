@@ -15,6 +15,7 @@ import model.Book;
 import model.Category;
 import model.Staff;
 import model.User;
+import model.Nxb;
 
 /**
  *
@@ -184,6 +185,68 @@ public class DAO {
 
     public static void main(String[] args) {
         new DAO();
+    }
+    //Nxb
+    public ArrayList<Nxb> getListNxb() {
+        ArrayList<Nxb> list = new ArrayList<>();
+        try {
+            CallableStatement ps = conn.prepareCall("{CALL proc_listNxb}");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Nxb c = new Nxb();
+                c.setId(rs.getInt(1));
+                c.setName(rs.getString(2));
+                c.setAddress(rs.getString(3));
+                c.setEmail(rs.getString(4));
+                list.add(c);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public boolean addNxb(Nxb b) {
+        try {
+            CallableStatement ps = conn.prepareCall("{CALL proc_createNxb(?,?,?)}");
+            ps.setString(1, b.getName());
+            ps.setString(2, b.getAddress());
+            ps.setString(3, b.getEmail());
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            System.out.println("Loi");
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean removeNxb(int remove) {
+        try {
+            CallableStatement ps = conn.prepareCall("{CALL proc_deleteNxb(?)}");
+            ps.setInt(1, remove);
+            int result = ps.executeUpdate();
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            System.out.println("Loi");
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean editNxb(Nxb nxb) {
+        try {
+            CallableStatement ps = conn.prepareCall("{CALL proc_editNxb(?,?,?,?)}");
+            ps.setInt(1, nxb.getId());
+            ps.setString(2, nxb.getName());
+            ps.setString(3, nxb.getAddress());
+            ps.setString(4, nxb.getEmail());
+            int result = ps.executeUpdate();
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            System.out.println("Loi");
+            e.printStackTrace();
+        }
+        return false;
     }
 
 }
