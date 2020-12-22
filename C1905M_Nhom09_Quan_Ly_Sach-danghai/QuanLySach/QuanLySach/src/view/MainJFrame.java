@@ -51,7 +51,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jDesktopPane1 = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Quản Lý Sinh Viên");
+        setTitle("Quản Lý Sách");
 
         jpnDanhMuc.setBackground(new java.awt.Color(153, 153, 153));
 
