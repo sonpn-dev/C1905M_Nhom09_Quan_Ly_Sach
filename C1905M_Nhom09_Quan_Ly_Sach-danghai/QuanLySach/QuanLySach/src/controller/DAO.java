@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import model.Book;
 import model.Category;
+import model.MuonTra;
 import model.Staff;
 import model.User;
 import model.Nxb;
@@ -240,6 +241,74 @@ public class DAO {
             ps.setString(2, nxb.getName());
             ps.setString(3, nxb.getAddress());
             ps.setString(4, nxb.getEmail());
+            int result = ps.executeUpdate();
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            System.out.println("Loi");
+            e.printStackTrace();
+        }
+        return false;
+    }
+    //Muon tra 
+    public ArrayList<MuonTra> getListMuonTra() {
+        ArrayList<MuonTra> list = new ArrayList<>();
+        try {
+            CallableStatement ps = conn.prepareCall("{CALL proc_listMuonTra}");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                MuonTra c = new MuonTra();
+                c.setId(rs.getInt(1));
+                c.setCard(rs.getString(2));
+                c.setUser(rs.getString(3));
+                c.setStaff(rs.getString(4));
+                c.setStatuts(rs.getString(5));
+                c.setBorrowed_date(rs.getString(6));
+                list.add(c);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    public boolean addMuonTra(MuonTra b) {
+        try {
+            CallableStatement ps = conn.prepareCall("{CALL proc_createMuonTra(?,?,?,?,?)}");
+            ps.setString(1, b.getCard());
+            ps.setString(2, b.getUser());
+            ps.setString(3, b.getStaff());
+            ps.setString(4, b.getStatuts());
+            ps.setString(5, b.getBorrowed_date());
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            System.out.println("Loi");
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+    public boolean removeMuonTra(int remove) {
+        try {
+            CallableStatement ps = conn.prepareCall("{CALL proc_deleteMuonTra(?)}");
+            ps.setInt(1, remove);
+            int result = ps.executeUpdate();
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            System.out.println("Loi");
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+    
+    public boolean editMuonTra(MuonTra muonTra) {
+        try {
+            CallableStatement ps = conn.prepareCall("{CALL proc_editMuonTra(?,?,?,?,?,?)}");
+            ps.setInt(1, muonTra.getId());
+            ps.setString(2, muonTra.getCard());
+            ps.setString(3, muonTra.getUser());
+            ps.setString(4, muonTra.getStaff());
+            ps.setString(5, muonTra.getStatuts());
+            ps.setString(6, muonTra.getBorrowed_date());
             int result = ps.executeUpdate();
             return ps.executeUpdate() > 0;
         } catch (Exception e) {
