@@ -174,12 +174,46 @@ public class DAO {
                 c.setId(rs.getInt(1));
                 c.setName(rs.getString(2));
                 c.setAddress(rs.getString(3));
+                c.setEmail(rs.getString(4));
                 list.add(c);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public boolean addUser(User b) {
+        try {
+            CallableStatement ps = conn.prepareCall("{CALL proc_createUser(?,?,?,?)}");
+            ps.setString(1, b.getName());
+            ps.setString(2, b.getAddress());
+            ps.setString(3, b.getEmail());
+            ps.setString(4, b.getPassword());
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            System.out.println("Loi");
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+
+
+    public boolean editUser(User user) {
+        try {
+            CallableStatement ps = conn.prepareCall("{CALL proc_editUser(?,?,?,?)}");
+            ps.setInt(1, user.getId());
+            ps.setString(2, user.getName());
+            ps.setString(3, user.getAddress());
+            ps.setString(4, user.getEmail());
+            int result = ps.executeUpdate();
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            System.out.println("Loi");
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public static void main(String[] args) {

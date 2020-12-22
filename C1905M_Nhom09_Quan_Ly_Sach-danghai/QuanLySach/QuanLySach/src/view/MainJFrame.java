@@ -5,6 +5,8 @@
  */
 package view;
 
+import javax.swing.JFrame;
+
 
 /**
  *
@@ -15,6 +17,7 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
+    private JFrame frame = new JFrame();
     public MainJFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -331,13 +334,16 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jlbLopHocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbLopHocMouseClicked
-        
+//        frame.getContentPane().removeAll();
+//        frame.repaint();
         ListStaff lb = new ListStaff();
         lb.setVisible(true);
         jDesktopPane1.add(lb);// TODO add your handling code here:
     }//GEN-LAST:event_jlbLopHocMouseClicked
 
     private void jlbUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbUserMouseClicked
+//        frame.getContentPane().removeAll();
+//        frame.repaint();
         ListUser lb = new ListUser();
         lb.setVisible(true);
         jDesktopPane1.add(lb);

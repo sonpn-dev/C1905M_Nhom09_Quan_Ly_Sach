@@ -26,6 +26,7 @@ public class ListStaff extends javax.swing.JInternalFrame {
      */
     public ListStaff() {
         initComponents();
+        jButton2.setVisible(false);
         list = new DAO().getListStaff();
         model = (DefaultTableModel) tblStaff.getModel();
         model.setColumnIdentifiers(new Object[]{

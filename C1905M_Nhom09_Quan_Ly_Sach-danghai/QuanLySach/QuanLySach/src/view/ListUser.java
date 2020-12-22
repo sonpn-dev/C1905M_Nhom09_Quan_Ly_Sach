@@ -26,20 +26,18 @@ public class ListUser extends javax.swing.JInternalFrame {
      */
     public ListUser() {
         initComponents();
+        jButton2.setVisible(false);
         list = new DAO().getListUser();
-        System.out.println("a"+list);
         model = (DefaultTableModel) tblUser.getModel();
         model.setColumnIdentifiers(new Object[]{
-            "STT","Tên người đọc","Địa chỉ"
+            "STT","Tên người đọc","Địa chỉ","Email"
         });
         showTable();
     }
     public void showTable(){
-        
         for(User s : list){
-            System.out.println("1"+s.getId());
             model.addRow(new Object[]{
-              s.getId(),s.getName(),s.getAddress()
+              s.getId(),s.getName(),s.getAddress(),s.getEmail()
             });
         }
     }
@@ -67,7 +65,7 @@ public class ListUser extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setTitle("Quan");
+        setTitle("Quản lý người đọc");
 
         btnAdd.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon_add.png"))); // NOI18N
@@ -225,14 +223,14 @@ public class ListUser extends javax.swing.JInternalFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-       // AddUser addUser = new AddUser(frame,true,user);
-       // addUser.setVisible(true);
+        AddUser addUser = new AddUser(frame,true,user);
+        addUser.setVisible(true);
         list = new DAO().getListUser();
         model.setRowCount(0);
         model = (DefaultTableModel) tblUser.getModel();
         
         model.setColumnIdentifiers(new Object[]{
-            "STT","Tên nhân viên","Địa chỉ"
+            "STT","Tên người đọc","Địa chỉ","Email"
         });
         showTable();
     }//GEN-LAST:event_btnAddActionPerformed
@@ -282,33 +280,33 @@ public class ListUser extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-//        int row = tblUser.getSelectedRow();
-//        int id=-1;
-//        int count = 0;
-//        for (User str : list) {
-//            if(count == row){
-//                id = str.getId();
-//            }
-//            count++;
-//        }
-//        if(id == -1){
-//            JOptionPane.showMessageDialog(rootPane,"Vui lòng chọn dòng cần cập nhật");
-//        }else if(list.size() ==0){
-//            JOptionPane.showMessageDialog(rootPane,"Không có dữ liệu để cập nhật");
-//        }else{
-//            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-//        
-//            EditUser editUser = new EditUser(frame,true,list,row);
-//            editUser.setVisible(true);
-//            list = new DAO().getListUser();
-//            model.setRowCount(0);
-//            model = (DefaultTableModel) tblUser.getModel();
-//
-//            model.setColumnIdentifiers(new Object[]{
-//                "STT","Tên nhân viên","Số diện thoại"
-//            });
-//            showTable();
-//        }
+        int row = tblUser.getSelectedRow();
+        int id=-1;
+        int count = 0;
+        for (User str : list) {
+            if(count == row){
+                id = str.getId();
+            }
+            count++;
+        }
+        if(id == -1){
+            JOptionPane.showMessageDialog(rootPane,"Vui lòng chọn dòng cần cập nhật");
+        }else if(list.size() ==0){
+            JOptionPane.showMessageDialog(rootPane,"Không có dữ liệu để cập nhật");
+        }else{
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        
+            EditUser editUser = new EditUser(frame,true,list,row);
+            editUser.setVisible(true);
+            list = new DAO().getListUser();
+            model.setRowCount(0);
+            model = (DefaultTableModel) tblUser.getModel();
+
+            model.setColumnIdentifiers(new Object[]{
+                "STT","Tên người đọc","Địa chỉ","Email"
+            });
+            showTable();
+        }
         
     }//GEN-LAST:event_btnEditActionPerformed
 

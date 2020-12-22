@@ -4,6 +4,7 @@ use qlsach
 go
 
 
+
 create table category
 (
 	id int primary key identity,
@@ -39,6 +40,7 @@ create table books
 	author_id int null,
 	category_id int null,
 	nxb_id int null,
+	quantity int null,
 	FOREIGN KEY (author_id) REFERENCES authors(id),
 	FOREIGN KEY (category_id) REFERENCES category(id),
 	FOREIGN KEY (nxb_id) REFERENCES nxb(id),
@@ -49,7 +51,9 @@ create table users
 (
 	id int primary key identity,
 	name nvarchar(100) null,
-	address nvarchar(100) null
+	address nvarchar(100) null,
+	email nvarchar(100) null,
+	password nvarchar(100) null,
 )
 go
 
@@ -64,6 +68,7 @@ create table cards
 	status tinyint default(0)
 )
 go
+
 
 create table staffs
 (
@@ -147,12 +152,6 @@ BEGIN
 	VALUES (@name,@id_cat,@id_author,@id_nxb,@year)
 END;
 EXEC proc_createBook N'HaiDang',N'Kim Dong123',1,N'Kim Oanh112',1998
-create table users
-(
-	id int primary key identity,
-	name nvarchar(100) null,
-	address nvarchar(100) null
-)
 go
 
 CREATE PROCEDURE proc_editBook 
@@ -227,13 +226,6 @@ BEGIN
 END;
 GO
 
-CREATE PROCEDURE proc_editCtMuontra
-@id int,@name nvarchar(100),@phone nvarchar(100)
-AS
-BEGIN
-    update staffs set name = @name, phone=@phone where id = @id 
-END;
-GO
 
 CREATE PROCEDURE proc_listUser
 AS
@@ -242,6 +234,28 @@ BEGIN
 END;
 go
 
-insert into users(name,address) values 
-('User1','address1')
+
+CREATE PROCEDURE proc_createUser
+@name nvarchar(100),
+@address nvarchar(100),
+@email nvarchar(100),
+@password nvarchar(100)
+AS
+BEGIN
+	Insert into users(name,address,email,password)
+	VALUES (@name,@address,@email,@password)
+END;
+go
+
+CREATE PROCEDURE proc_editUser
+@id int,@name nvarchar(100),@address nvarchar(100),@email nvarchar(100)
+AS
+BEGIN
+    update users set name = @name, address = @address, email = @email where id = @id 
+END;
+GO
+
+
+insert into users(name,address,email,password) values 
+('User1','address1','email1','1')
 go

@@ -6,6 +6,7 @@
 package view;
 
 import controller.DAO;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.User;
@@ -14,26 +15,43 @@ import model.User;
  *
  * @author A_Muoi
  */
-public class AddUser extends javax.swing.JDialog {
-
-    private ListUser listUser;
+public class EditUser extends javax.swing.JDialog {
+    private ArrayList<User> list;
+    private int id;
     User user;
     DAO dao;
-    public AddUser(java.awt.Frame parent, boolean modal, User user) {
+//    public AddUser(java.awt.Frame parent, boolean modal) {
+//        super(parent, modal);
+//        initComponents();
+//        this.setLocationRelativeTo(null);   
+//    }
+    public EditUser(java.awt.Frame parent, boolean modal, ArrayList<User> list,int row) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         dao = new DAO();
         this.user = user;
+        int count = 0;
+            for (User str : list) {
+                if(count == row){
+                    id = str.getId();
+                    System.out.println("Id"+str.getId());
+                    EditName.setText(str.getName());
+                    EditAddress.setText(str.getAddress());
+                    EditEmail.setText(str.getEmail());
+                }
+                count++;
+            }
         initData();
    
     }
     public void initData(){
-        if (user != null) {
-            UserName.setText(user.getName());
-            Address.setText(user.getAddress());
-            Email.setText(user.getEmail());
-            Password.setText(user.getPassword());
+        if (user != null) {  
+            EditName.setText(user.getName());
+            EditAddress.setText(user.getAddress());
+            EditEmail.setText(user.getEmail());
+
+
         } else {
             user = new User();
         }
@@ -50,32 +68,29 @@ public class AddUser extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        btnAdd = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
-        btnBack1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        UserName = new javax.swing.JTextField();
-        Address = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        Email = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        Password = new javax.swing.JTextField();
+        EditAddress = new javax.swing.JTextField();
+        EditName = new javax.swing.JTextField();
+        EditEmail = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        btnAdd.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save_64.png"))); // NOI18N
-        btnAdd.setText("Lưu");
-        btnAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnAdd.setMaximumSize(new java.awt.Dimension(115, 93));
-        btnAdd.setMinimumSize(new java.awt.Dimension(115, 93));
-        btnAdd.setPreferredSize(new java.awt.Dimension(115, 93));
-        btnAdd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+        btnEdit.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save_64.png"))); // NOI18N
+        btnEdit.setText("Sửa");
+        btnEdit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEdit.setMaximumSize(new java.awt.Dimension(115, 93));
+        btnEdit.setMinimumSize(new java.awt.Dimension(115, 93));
+        btnEdit.setPreferredSize(new java.awt.Dimension(115, 93));
+        btnEdit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
+                btnEditActionPerformed(evt);
             }
         });
 
@@ -93,20 +108,6 @@ public class AddUser extends javax.swing.JDialog {
             }
         });
 
-        btnBack1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnBack1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/left_64.png"))); // NOI18N
-        btnBack1.setText("Làm mới");
-        btnBack1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnBack1.setMaximumSize(new java.awt.Dimension(115, 93));
-        btnBack1.setMinimumSize(new java.awt.Dimension(115, 93));
-        btnBack1.setPreferredSize(new java.awt.Dimension(115, 93));
-        btnBack1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnBack1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBack1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -114,10 +115,8 @@ public class AddUser extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(btnBack1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 429, Short.MAX_VALUE)
-                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(69, 69, 69))
         );
         jPanel2Layout.setVerticalGroup(
@@ -126,68 +125,59 @@ public class AddUser extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBack1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Tên nhiên viên:");
-
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Địa chỉ:");
-
-        Address.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddressActionPerformed(evt);
-            }
-        });
+        jLabel1.setText("Tên người đọc:");
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Email");
+        jLabel3.setText("Địa chỉ:");
 
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Password");
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Email:");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(139, 139, 139)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(39, 39, 39)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(Email)
-                    .addComponent(UserName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
-                    .addComponent(Address, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Password))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(139, 139, 139)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)))))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(EditName, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EditAddress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EditEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(UserName, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(EditName, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(45, 45, 45)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Address, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EditAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Email, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Password, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
-                .addContainerGap(98, Short.MAX_VALUE))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EditEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(143, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -219,41 +209,33 @@ public class AddUser extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        String name,address,email;
+        boolean isOk = true;
+        
+        name = EditName.getText();
+        address = EditAddress.getText();
+        email = EditEmail.getText();
+
+        if(name.length()==0||address.length()==0||email.length()==0){
+            isOk = false;
+            JOptionPane.showMessageDialog(rootPane, 
+                    "Vui lòng nhập đầy đủ thông tin");    
+        }
+        if(isOk){
+            user.setName(EditName.getText());
+            user.setAddress(EditAddress.getText());
+            user.setEmail(EditEmail.getText());
+            System.out.println("Id"+id);
+            user.setId(id);
+            dao.editUser(user);
+            dispose();
+        }
+    }//GEN-LAST:event_btnEditActionPerformed
+
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         dispose();
     }//GEN-LAST:event_btnBackActionPerformed
-
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        String name,address,email,password;
-        boolean isOk = true;
-        
-        name = UserName.getText();
-        address = Address.getText();
-        email = Email.getText();
-        password = Password.getText();
-        if(name.length()==0||address.length()==0||email.length()==0||password.length()==0){
-            isOk = false;
-            JOptionPane.showMessageDialog(rootPane, 
-                    "Vui lòng nhập đầy đủ thông tin");
-            
-        }
-        if(isOk){
-            user.setName(UserName.getText());
-            user.setAddress(Address.getText());
-            user.setEmail(Email.getText());
-            user.setPassword(Password.getText());
-            dao.addUser(user);
-            dispose();
-        }
-    }//GEN-LAST:event_btnAddActionPerformed
-
-    private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBack1ActionPerformed
-
-    private void AddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddressActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddressActionPerformed
 
     /**
      * @param args the command line arguments
@@ -272,14 +254,30 @@ public class AddUser extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -300,7 +298,7 @@ public class AddUser extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                AddUser dialog = new AddUser(new javax.swing.JFrame(), true,null);
+                EditUser dialog = new EditUser(new javax.swing.JFrame(), true,null,0);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -313,17 +311,14 @@ public class AddUser extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Address;
-    private javax.swing.JTextField Email;
-    private javax.swing.JTextField Password;
-    private javax.swing.JTextField UserName;
-    private javax.swing.JButton btnAdd;
+    private javax.swing.JTextField EditAddress;
+    private javax.swing.JTextField EditEmail;
+    private javax.swing.JTextField EditName;
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnBack1;
+    private javax.swing.JButton btnEdit;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
