@@ -90,7 +90,7 @@
                   <Font name="Arial" size="14" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/images/save_64.png"/>
+                  <Image iconType="3" name="/images/tick_64.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="L&#x1b0;u"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -140,7 +140,7 @@
                   <Font name="Arial" size="14" style="0"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/images/left_64.png"/>
+                  <Image iconType="3" name="/images/icons8_update_50px.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="L&#xe0;m m&#x1edb;i"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -188,11 +188,13 @@
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="jLabel4" min="-2" pref="129" max="-2" attributes="0"/>
                                   <Component id="jLabel5" alignment="1" min="-2" pref="129" max="-2" attributes="0"/>
+                                  <Component id="jLabel6" min="-2" pref="129" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="27" pref="27" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="NXB" pref="476" max="32767" attributes="0"/>
                                   <Component id="jCat" max="32767" attributes="0"/>
+                                  <Component id="Quantity" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -223,18 +225,17 @@
                           <Component id="NXB" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                           <Component id="jLabel5" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel4" min="-2" pref="33" max="-2" attributes="0"/>
-                              <EmptySpace pref="71" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jCat" min="-2" pref="42" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jLabel4" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="jCat" min="-2" pref="42" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="Quantity" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="jLabel6" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="55" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -282,6 +283,14 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jCat">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel6">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="S&#x1ed1; l&#x1b0;&#x1ee3;ng"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="Quantity">
             </Component>
           </SubComponents>
         </Container>

@@ -160,11 +160,13 @@
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="jLabel4" min="-2" pref="129" max="-2" attributes="0"/>
                                   <Component id="jLabel5" alignment="1" min="-2" pref="129" max="-2" attributes="0"/>
+                                  <Component id="jLabel6" min="-2" pref="129" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="27" pref="27" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="EditNXB" pref="476" max="32767" attributes="0"/>
                                   <Component id="EditCat" max="32767" attributes="0"/>
+                                  <Component id="EditQuantity" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -199,14 +201,18 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel4" min="-2" pref="33" max="-2" attributes="0"/>
-                              <EmptySpace pref="71" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Component id="EditCat" min="-2" pref="42" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="EditQuantity" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="jLabel6" min="-2" pref="33" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="76" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -254,6 +260,14 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="EditCat">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel6">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="Lo&#x1ea1;i s&#xe1;ch:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="EditQuantity">
             </Component>
           </SubComponents>
         </Container>

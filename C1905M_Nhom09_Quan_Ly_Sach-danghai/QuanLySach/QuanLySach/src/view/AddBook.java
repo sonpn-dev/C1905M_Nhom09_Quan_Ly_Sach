@@ -41,7 +41,7 @@ public class AddBook extends javax.swing.JDialog {
             jCat.setText(book.getCategory());
             YearMaking.setText(book.getYearMaking()+"");
             NXB.setText(book.getNxb());
-            
+            Quantity.setText(book.getQuantity()+"");
         } else {
             book = new Book();
         }
@@ -72,11 +72,13 @@ public class AddBook extends javax.swing.JDialog {
         NXB = new javax.swing.JTextField();
         YearMaking = new javax.swing.JTextField();
         jCat = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        Quantity = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnAdd.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save_64.png"))); // NOI18N
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tick_64.png"))); // NOI18N
         btnAdd.setText("Lưu");
         btnAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAdd.setMaximumSize(new java.awt.Dimension(115, 93));
@@ -104,7 +106,7 @@ public class AddBook extends javax.swing.JDialog {
         });
 
         btnBack1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnBack1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/left_64.png"))); // NOI18N
+        btnBack1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_update_50px.png"))); // NOI18N
         btnBack1.setText("Làm mới");
         btnBack1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnBack1.setMaximumSize(new java.awt.Dimension(115, 93));
@@ -162,6 +164,9 @@ public class AddBook extends javax.swing.JDialog {
             }
         });
 
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Số lượng");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -183,11 +188,13 @@ public class AddBook extends javax.swing.JDialog {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(NXB, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
-                            .addComponent(jCat))))
+                            .addComponent(jCat)
+                            .addComponent(Quantity))))
                 .addContainerGap(126, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -209,15 +216,15 @@ public class AddBook extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NXB, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(71, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jCat, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCat, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -288,13 +295,18 @@ public class AddBook extends javax.swing.JDialog {
             book.setCategory(jCat.getText());
             book.setNxb(NXB.getText());
             book.setYearMaking(Integer.parseInt(YearMaking.getText()));
+            book.setQuantity(Integer.parseInt(Quantity.getText()));
             dao.addBook(book);
             dispose();
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
-        // TODO add your handling code here:
+        Auth.setText("");
+        BookName.setText("");
+        NXB.setText("");
+        Quantity.setText("");
+        YearMaking.setText("");
     }//GEN-LAST:event_btnBack1ActionPerformed
 
     /**
@@ -326,6 +338,10 @@ public class AddBook extends javax.swing.JDialog {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -346,6 +362,7 @@ public class AddBook extends javax.swing.JDialog {
     private javax.swing.JTextField Auth;
     private javax.swing.JTextField BookName;
     private javax.swing.JTextField NXB;
+    private javax.swing.JTextField Quantity;
     private javax.swing.JTextField YearMaking;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
@@ -356,6 +373,7 @@ public class AddBook extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

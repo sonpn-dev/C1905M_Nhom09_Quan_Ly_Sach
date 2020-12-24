@@ -26,18 +26,18 @@ public class ListUser extends javax.swing.JInternalFrame {
      */
     public ListUser() {
         initComponents();
-        jButton2.setVisible(false);
         list = new DAO().getListUser();
         model = (DefaultTableModel) tblUser.getModel();
         model.setColumnIdentifiers(new Object[]{
-            "STT","Tên người đọc","Địa chỉ","Email"
+            "STT","Mã độc giả","Tên người đọc","Địa chỉ","Email"
         });
         showTable();
     }
     public void showTable(){
+        int i = 1;
         for(User s : list){
             model.addRow(new Object[]{
-              s.getId(),s.getName(),s.getAddress(),s.getEmail()
+              i++,s.getId(),s.getName(),s.getAddress(),s.getEmail()
             });
         }
     }
@@ -55,9 +55,8 @@ public class ListUser extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         btnAdd = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        btnSearch = new javax.swing.JButton();
+        USER = new javax.swing.JTextField();
+        searchUser = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblUser = new javax.swing.JTable();
@@ -65,7 +64,9 @@ public class ListUser extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
+        setResizable(true);
         setTitle("Quản lý người đọc");
+        setPreferredSize(new java.awt.Dimension(820, 550));
 
         btnAdd.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon_add.png"))); // NOI18N
@@ -99,28 +100,18 @@ public class ListUser extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon_delete.png"))); // NOI18N
-        jButton2.setText("Xóa");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setMaximumSize(new java.awt.Dimension(97, 93));
-        jButton2.setMinimumSize(new java.awt.Dimension(97, 93));
-        jButton2.setPreferredSize(new java.awt.Dimension(97, 93));
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        USER.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                USERActionPerformed(evt);
             }
         });
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        searchUser.setText("Search");
+        searchUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                searchUserActionPerformed(evt);
             }
         });
-
-        btnSearch.setText("Search");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -128,31 +119,28 @@ public class ListUser extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(178, 178, 178)
+                .addComponent(searchUser, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addComponent(USER, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(25, 25, 25))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(USER, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchUser, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -230,54 +218,19 @@ public class ListUser extends javax.swing.JInternalFrame {
         model = (DefaultTableModel) tblUser.getModel();
         
         model.setColumnIdentifiers(new Object[]{
-            "STT","Tên người đọc","Địa chỉ","Email"
+            "STT","Mã độc giả","Tên người đọc","Địa chỉ","Email"
         });
         showTable();
     }//GEN-LAST:event_btnAddActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void USERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_USERActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_USERActionPerformed
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
 
       
     }//GEN-LAST:event_btnAddMouseClicked
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int row = tblUser.getSelectedRow();
-        int id=-1;
-        int count = 0;
-       
-        for (User str : list) {
-            if(count == row){
-                id = str.getId();
-            }
-            count++;
-        }
-        if(id == -1){
-            JOptionPane.showMessageDialog(rootPane,"Vui lòng chọn dòng cần xóa");
-        }else if(list.size() ==0){
-            JOptionPane.showMessageDialog(rootPane,"Không có dữ liệu để xóa");
-        }else{
-           // boolean ok = new DAO().removeUser(id);
-            
-//            if(ok){
-//                System.out.println("1");
-//            }else{
-//                
-//               list = new DAO().getListUser();
-//                model.setRowCount(0);
-//                model = (DefaultTableModel) tblUser.getModel();
-//
-//                model.setColumnIdentifiers(new Object[]{
-//                    "STT","Tên nhân viên","Số điện thoại"
-//                });
-//                showTable();
-//            }
-            
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         int row = tblUser.getSelectedRow();
@@ -303,24 +256,45 @@ public class ListUser extends javax.swing.JInternalFrame {
             model = (DefaultTableModel) tblUser.getModel();
 
             model.setColumnIdentifiers(new Object[]{
-                "STT","Tên người đọc","Địa chỉ","Email"
+                "STT","Mã độc giả","Tên người đọc","Địa chỉ","Email"
             });
             showTable();
         }
         
     }//GEN-LAST:event_btnEditActionPerformed
 
+    private void searchUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserActionPerformed
+        String name = USER.getText();
+        if(name.length()==0){
+            list = new DAO().getListUser();
+            model.setRowCount(0);
+            model = (DefaultTableModel) tblUser.getModel();
+             model.setColumnIdentifiers(new Object[]{
+                "STT","Mã độc giả","Tên người đọc","Địa chỉ","Email"
+            });
+            showTable();
+        }else{
+            list = new DAO().searchUser(name);
+            model.setRowCount(0);
+            model = (DefaultTableModel) tblUser.getModel();
+
+            model.setColumnIdentifiers(new Object[]{
+                "STT","Mã độc giả","Tên người đọc","Địa chỉ","Email"
+            });
+            showTable();
+        }
+    }//GEN-LAST:event_searchUserActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField USER;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnEdit;
-    private javax.swing.JButton btnSearch;
-    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton searchUser;
     private javax.swing.JTable tblUser;
     // End of variables declaration//GEN-END:variables
 }

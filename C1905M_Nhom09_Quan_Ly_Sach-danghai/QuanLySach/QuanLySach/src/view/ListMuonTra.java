@@ -11,37 +11,41 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
-import model.Staff;
+import model.Book;
+import model.Category;
 
 /**
  *
  * @author A_Muoi
  */
-public class ListStaff extends javax.swing.JInternalFrame {
-    private ArrayList<Staff> list;
+public class ListMuonTra extends javax.swing.JInternalFrame {
+    private ArrayList<Book> list;
     DefaultTableModel model;
-    Staff staff;
+    Book book;
     /**
      * Creates new form SachList
      */
-    public ListStaff() {
+    public ListMuonTra() {
         initComponents();
-        list = new DAO().getListStaff();
-        model = (DefaultTableModel) tblStaff.getModel();
+        list = new DAO().getListBook();
+        model = (DefaultTableModel) tblSach.getModel();
         model.setColumnIdentifiers(new Object[]{
-            "STT","Mã nhân viên","Tên nhân viên","Số điện thoại","Email"
+            "STT","Tên sách","Danh mục sách","Tên tác giả","Nhà XB","Năm XB","Số lượng"
         });
         showTable();
     }
     public void showTable(){
-        int i = 1;
-        for(Staff s : list){
+        for(Book b : list){
         model.addRow(new Object[]{
-          i++,s.getId(),s.getName(),s.getPhone(),s.getEmail()
+          b.getId(),b.getName(),b.getCategory(),b.getAuthor(),b.getNxb(),b.getYearMaking(),
+            b.getQuantity()
         });
         }
     }
-
+    public boolean disableBtn(){
+        btnEdit.setEnabled(false);
+        return true;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,16 +59,16 @@ public class ListStaff extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         btnAdd = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
-        STAFF = new javax.swing.JTextField();
-        searchStaff = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblStaff = new javax.swing.JTable();
+        tblSach = new javax.swing.JTable();
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
-        setTitle("Quản Lý Nhân Viên");
+        setTitle("Quản Lý Sách");
         setPreferredSize(new java.awt.Dimension(820, 550));
 
         btnAdd.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -99,16 +103,26 @@ public class ListStaff extends javax.swing.JInternalFrame {
             }
         });
 
-        STAFF.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon_delete.png"))); // NOI18N
+        jButton2.setText("Xóa");
+        jButton2.setFocusable(false);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setMaximumSize(new java.awt.Dimension(97, 93));
+        jButton2.setMinimumSize(new java.awt.Dimension(97, 93));
+        jButton2.setPreferredSize(new java.awt.Dimension(97, 93));
+        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                STAFFActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
 
-        searchStaff.setText("Search");
-        searchStaff.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setText("Nhập Tên Sách:");
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchStaffActionPerformed(evt);
+                jTextField1ActionPerformed(evt);
             }
         });
 
@@ -118,32 +132,35 @@ public class ListStaff extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(178, 178, 178)
-                .addComponent(searchStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(STAFF, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(25, 25, 25))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(STAFF, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tblStaff.setModel(new javax.swing.table.DefaultTableModel(
+        tblSach.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -151,7 +168,7 @@ public class ListStaff extends javax.swing.JInternalFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(tblStaff);
+        jScrollPane1.setViewportView(tblSach);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -168,7 +185,7 @@ public class ListStaff extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 790, Short.MAX_VALUE)
+            .addGap(0, 784, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,32 +227,67 @@ public class ListStaff extends javax.swing.JInternalFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        AddStaff addStaff = new AddStaff(frame,true,staff);
-        addStaff.setVisible(true);
-        list = new DAO().getListStaff();
+        AddBook addBook = new AddBook(frame,true,book);
+        addBook.setVisible(true);
+        list = new DAO().getListBook();
         model.setRowCount(0);
-        model = (DefaultTableModel) tblStaff.getModel();
+        model = (DefaultTableModel) tblSach.getModel();
         
         model.setColumnIdentifiers(new Object[]{
-            "STT","Mã nhân viên","Tên nhân viên","Số điện thoại","Email"
+             "STT","Tên sách","Danh mục sách","Tên tác giả","Nhà XB","Năm XB","Số lượng"
         });
         showTable();
     }//GEN-LAST:event_btnAddActionPerformed
 
-    private void STAFFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_STAFFActionPerformed
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_STAFFActionPerformed
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
 
       
     }//GEN-LAST:event_btnAddMouseClicked
 
-    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        int row = tblStaff.getSelectedRow();
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int row = tblSach.getSelectedRow();
         int id=-1;
         int count = 0;
-        for (Staff str : list) {
+       
+        for (Book str : list) {
+            if(count == row){
+                id = str.getId();
+            }
+            count++;
+        }
+        if(id == -1){
+            JOptionPane.showMessageDialog(rootPane,"Vui lòng chọn dòng cần xóa");
+        }else if(list.size() ==0){
+            JOptionPane.showMessageDialog(rootPane,"Không có dữ liệu để xóa");
+        }else{
+            boolean ok = new DAO().removeBook(id);
+            
+            if(ok){
+                System.out.println("1");
+            }else{
+                
+               list = new DAO().getListBook();
+                model.setRowCount(0);
+                model = (DefaultTableModel) tblSach.getModel();
+
+                model.setColumnIdentifiers(new Object[]{
+                     "STT","Tên sách","Danh mục sách","Tên tác giả","Nhà XB","Năm XB","Số lượng"
+                });
+                showTable();
+            }
+            
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        int row = tblSach.getSelectedRow();
+        int id=-1;
+        int count = 0;
+        for (Book str : list) {
             if(count == row){
                 id = str.getId();
             }
@@ -248,53 +300,31 @@ public class ListStaff extends javax.swing.JInternalFrame {
         }else{
             JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         
-            EditStaff editStaff = new EditStaff(frame,true,list,row);
-            editStaff.setVisible(true);
-            list = new DAO().getListStaff();
+            EditBook editBook = new EditBook(frame,true,list,row);
+            editBook.setVisible(true);
+            list = new DAO().getListBook();
             model.setRowCount(0);
-            model = (DefaultTableModel) tblStaff.getModel();
+            model = (DefaultTableModel) tblSach.getModel();
 
             model.setColumnIdentifiers(new Object[]{
-                "STT","Mã nhân viên","Tên nhân viên","Số diện thoại","Email"
+                 "STT","Tên sách","Danh mục sách","Tên tác giả","Nhà XB","Năm XB","Số lượng"
             });
             showTable();
         }
         
     }//GEN-LAST:event_btnEditActionPerformed
 
-    private void searchStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchStaffActionPerformed
-        String name = STAFF.getText();
-        if(name.length()==0){
-            list = new DAO().getListStaff();
-            model.setRowCount(0);
-            model = (DefaultTableModel) tblStaff.getModel();
-            model.setColumnIdentifiers(new Object[]{
-                "STT","Mã nhân viên","Tên nhân viên","Số diện thoại","Email"
-            });
-            showTable();
-        }else{
-            list = new DAO().searchStaff(name);
-            model.setRowCount(0);
-            model = (DefaultTableModel) tblStaff.getModel();
-
-            model.setColumnIdentifiers(new Object[]{
-                "STT","Mã nhân viên","Tên nhân viên","Số diện thoại","Email"
-            });
-            showTable();
-        }
-        
-    }//GEN-LAST:event_searchStaffActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField STAFF;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnEdit;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton searchStaff;
-    private javax.swing.JTable tblStaff;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tblSach;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,25 +16,27 @@ public class Book {
     private String author;
     private String category;
     private String nxb;
-
+    private int quantity;
     public Book() {
     }
 
-    public Book(String name, int yearMaking, String author, String category, String nxb) {
+    public Book(String name, int yearMaking, String author, String category, String nxb,int quantity) {
         this.name = name;
         this.yearMaking = yearMaking;
         this.author = author;
         this.category = category;
         this.nxb = nxb;
+        this.quantity = quantity;
     }
 
-    public Book(int id, String name, int yearMaking, String author, String category, String nxb) {
+    public Book(int id, String name, int yearMaking, String author, String category, String nxb, int quantity) {
         this.id = id;
         this.name = name;
         this.yearMaking = yearMaking;
         this.author = author;
         this.category = category;
         this.nxb = nxb;
+        this.quantity = quantity;
     }
     
     public String getName() {
@@ -83,6 +85,14 @@ public class Book {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
    
     

@@ -3,18 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main;
-
-import view.Login;
-
+package model;
 
 /**
  *
  * @author NDH
  */
-public class Main {
-    public static void main(String[] args) {
-        Login l = new Login();
-        l.setVisible(true);
-    }
+public class MuonTra {
+    
 }

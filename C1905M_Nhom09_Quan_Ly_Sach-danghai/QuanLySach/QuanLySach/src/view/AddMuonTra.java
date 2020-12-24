@@ -6,7 +6,6 @@
 package view;
 
 import controller.DAO;
-import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.Book;
@@ -15,9 +14,9 @@ import model.Book;
  *
  * @author A_Muoi
  */
-public class EditBook extends javax.swing.JDialog {
-    private ArrayList<Book> list;
-    private int id;
+public class AddMuonTra extends javax.swing.JDialog {
+
+    private ListBook listBook;
     Book book;
     DAO dao;
 //    public AddBook(java.awt.Frame parent, boolean modal) {
@@ -25,39 +24,24 @@ public class EditBook extends javax.swing.JDialog {
 //        initComponents();
 //        this.setLocationRelativeTo(null);   
 //    }
-    public EditBook(java.awt.Frame parent, boolean modal, ArrayList<Book> list,int row) {
+    public AddMuonTra(java.awt.Frame parent, boolean modal, Book book) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        System.out.println("N:"+book);
         dao = new DAO();
         this.book = book;
-        int count = 0;
-            for (Book str : list) {
-                if(count == row){
-                    id = str.getId();
-                    System.out.println("Id"+str.getId());
-                    EditName.setText(str.getName());
-                    EditAuth.setText(str.getAuthor());
-                    EditCat.setText(str.getCategory());
-                    EditYear.setText(str.getYearMaking()+"");
-                    EditNXB.setText(str.getNxb());
-                    EditQuantity.setText(str.getQuantity()+"");
-                }
-                count++;
-            }
         initData();
    
     }
     public void initData(){
         if (book != null) {
             
-            EditName.setText(book.getName());
-            EditAuth.setText(book.getAuthor());
-            EditCat.setText(book.getCategory());
-            EditYear.setText(book.getYearMaking()+"");
-            EditNXB.setText(book.getNxb());
-            EditQuantity.setText(book.getQuantity()+"");
+            BookName.setText(book.getName());
+            Auth.setText(book.getAuthor());
+            jCat.setText(book.getCategory());
+            YearMaking.setText(book.getYearMaking()+"");
+            NXB.setText(book.getNxb());
+            Quantity.setText(book.getQuantity()+"");
         } else {
             book = new Book();
         }
@@ -74,35 +58,36 @@ public class EditBook extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        btnEdit = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        btnBack1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        EditAuth = new javax.swing.JTextField();
-        EditName = new javax.swing.JTextField();
-        EditNXB = new javax.swing.JTextField();
-        EditYear = new javax.swing.JTextField();
-        EditCat = new javax.swing.JTextField();
+        Auth = new javax.swing.JTextField();
+        BookName = new javax.swing.JTextField();
+        NXB = new javax.swing.JTextField();
+        YearMaking = new javax.swing.JTextField();
+        jCat = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        EditQuantity = new javax.swing.JTextField();
+        Quantity = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        btnEdit.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save_64.png"))); // NOI18N
-        btnEdit.setText("Sửa");
-        btnEdit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnEdit.setMaximumSize(new java.awt.Dimension(115, 93));
-        btnEdit.setMinimumSize(new java.awt.Dimension(115, 93));
-        btnEdit.setPreferredSize(new java.awt.Dimension(115, 93));
-        btnEdit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tick_64.png"))); // NOI18N
+        btnAdd.setText("Lưu");
+        btnAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdd.setMaximumSize(new java.awt.Dimension(115, 93));
+        btnAdd.setMinimumSize(new java.awt.Dimension(115, 93));
+        btnAdd.setPreferredSize(new java.awt.Dimension(115, 93));
+        btnAdd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
 
@@ -120,6 +105,20 @@ public class EditBook extends javax.swing.JDialog {
             }
         });
 
+        btnBack1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnBack1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_update_50px.png"))); // NOI18N
+        btnBack1.setText("Làm mới");
+        btnBack1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnBack1.setMaximumSize(new java.awt.Dimension(115, 93));
+        btnBack1.setMinimumSize(new java.awt.Dimension(115, 93));
+        btnBack1.setPreferredSize(new java.awt.Dimension(115, 93));
+        btnBack1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnBack1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBack1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -127,8 +126,10 @@ public class EditBook extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(btnBack1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 429, Short.MAX_VALUE)
+                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(69, 69, 69))
         );
         jPanel2Layout.setVerticalGroup(
@@ -137,7 +138,8 @@ public class EditBook extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBack1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -156,14 +158,14 @@ public class EditBook extends javax.swing.JDialog {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Nhà xuất bản:");
 
-        EditYear.addActionListener(new java.awt.event.ActionListener() {
+        YearMaking.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditYearActionPerformed(evt);
+                YearMakingActionPerformed(evt);
             }
         });
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Loại sách:");
+        jLabel6.setText("Số lượng");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -180,9 +182,9 @@ public class EditBook extends javax.swing.JDialog {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(EditAuth, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
-                            .addComponent(EditName, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
-                            .addComponent(EditYear)))
+                            .addComponent(Auth, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+                            .addComponent(BookName, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+                            .addComponent(YearMaking)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -190,9 +192,9 @@ public class EditBook extends javax.swing.JDialog {
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(EditNXB, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
-                            .addComponent(EditCat)
-                            .addComponent(EditQuantity))))
+                            .addComponent(NXB, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+                            .addComponent(jCat)
+                            .addComponent(Quantity))))
                 .addContainerGap(126, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -200,32 +202,29 @@ public class EditBook extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(EditName, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BookName, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(EditYear))
+                    .addComponent(YearMaking))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(EditAuth, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Auth, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(EditNXB, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NXB, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(EditCat, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(EditQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCat, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -257,19 +256,23 @@ public class EditBook extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void EditYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditYearActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EditYearActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnBackActionPerformed
 
-    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+    private void YearMakingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YearMakingActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_YearMakingActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         String name,auth,category,nxb;
         int year;
         boolean isOk = true;
         
-        name = EditName.getText();
-        auth = EditAuth.getText();
-        category = EditCat.getText();
-        nxb = EditNXB.getText();
+        name = BookName.getText();
+        auth = Auth.getText();
+        category = jCat.getText();
+        nxb = NXB.getText();
         if(name.length()==0||auth.length()==0||
                 category.length()==0||nxb.length()==0){
             isOk = false;
@@ -279,7 +282,7 @@ public class EditBook extends javax.swing.JDialog {
         }
         try {
             if(isOk == true)
-            year = Integer.parseInt(EditYear.getText());
+            year = Integer.parseInt(YearMaking.getText());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, 
                     "Năm không đúng định dạng");
@@ -287,22 +290,24 @@ public class EditBook extends javax.swing.JDialog {
         }
         
         if(isOk){
-            book.setName(EditName.getText());
-            book.setAuthor(EditAuth.getText());
-            book.setCategory(EditCat.getText());
-            book.setNxb(EditNXB.getText());
-            book.setYearMaking(Integer.parseInt(EditYear.getText()));
-            book.setQuantity(Integer.parseInt(EditQuantity.getText()));
-            System.out.println("Id"+id);
-            book.setId(id);
-            dao.editBook(book);
+            book.setName(BookName.getText());
+            book.setAuthor(Auth.getText());
+            book.setCategory(jCat.getText());
+            book.setNxb(NXB.getText());
+            book.setYearMaking(Integer.parseInt(YearMaking.getText()));
+            book.setQuantity(Integer.parseInt(Quantity.getText()));
+            dao.addBook(book);
             dispose();
         }
-    }//GEN-LAST:event_btnEditActionPerformed
+    }//GEN-LAST:event_btnAddActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        dispose();
-    }//GEN-LAST:event_btnBackActionPerformed
+    private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
+        Auth.setText("");
+        BookName.setText("");
+        NXB.setText("");
+        Quantity.setText("");
+        YearMaking.setText("");
+    }//GEN-LAST:event_btnBack1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -321,13 +326,13 @@ public class EditBook extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddMuonTra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddMuonTra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddMuonTra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddMuonTra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -349,7 +354,7 @@ public class EditBook extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                EditBook dialog = new EditBook(new javax.swing.JFrame(), true,null,0);
+                AddMuonTra dialog = new AddMuonTra(new javax.swing.JFrame(), true,null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -362,14 +367,15 @@ public class EditBook extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField EditAuth;
-    private javax.swing.JTextField EditCat;
-    private javax.swing.JTextField EditNXB;
-    private javax.swing.JTextField EditName;
-    private javax.swing.JTextField EditQuantity;
-    private javax.swing.JTextField EditYear;
+    private javax.swing.JTextField Auth;
+    private javax.swing.JTextField BookName;
+    private javax.swing.JTextField NXB;
+    private javax.swing.JTextField Quantity;
+    private javax.swing.JTextField YearMaking;
+    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnBack1;
+    private javax.swing.JTextField jCat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -39,6 +39,7 @@ public class EditStaff extends javax.swing.JDialog {
                     System.out.println("Id"+str.getId());
                     EditName.setText(str.getName());
                     EditPhone.setText(str.getPhone());
+                    EditEmail.setText(str.getEmail());
                 }
                 count++;
             }
@@ -49,7 +50,7 @@ public class EditStaff extends javax.swing.JDialog {
         if (staff != null) {  
             EditName.setText(staff.getName());
             EditPhone.setText(staff.getPhone());
-
+            EditEmail.setText(staff.getEmail());
         } else {
             staff = new Staff();
         }
@@ -73,6 +74,8 @@ public class EditStaff extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         EditPhone = new javax.swing.JTextField();
         EditName = new javax.swing.JTextField();
+        EditEmail = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -129,7 +132,10 @@ public class EditStaff extends javax.swing.JDialog {
         jLabel1.setText("Tên nhân viên:");
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Tác giả:");
+        jLabel3.setText("Số điện thoại:");
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Email:");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -139,11 +145,13 @@ public class EditStaff extends javax.swing.JDialog {
                 .addGap(139, 139, 139)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(EditPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
-                    .addComponent(EditName, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE))
+                    .addComponent(EditName, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+                    .addComponent(EditEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE))
                 .addContainerGap(126, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -153,11 +161,15 @@ public class EditStaff extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(EditName, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EditPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(EditPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(169, Short.MAX_VALUE))
+                    .addComponent(EditEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -190,12 +202,13 @@ public class EditStaff extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        String name,phone;
+        String name,phone,email;
         boolean isOk = true;
         
         name = EditName.getText();
         phone = EditPhone.getText();
-        if(name.length()==0||phone.length()==0 ){
+        email = EditEmail.getText();
+        if(name.length()==0||phone.length()==0||email.length()==0 ){
             isOk = false;
             JOptionPane.showMessageDialog(rootPane, 
                     "Vui lòng nhập đầy đủ thông tin");    
@@ -203,7 +216,7 @@ public class EditStaff extends javax.swing.JDialog {
         if(isOk){
             staff.setName(EditName.getText());
             staff.setPhone(EditPhone.getText());
-            System.out.println("Id"+id);
+            staff.setEmail(EditEmail.getText());
             staff.setId(id);
             dao.editStaff(staff);
             dispose();
@@ -272,12 +285,14 @@ public class EditStaff extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField EditEmail;
     private javax.swing.JTextField EditName;
     private javax.swing.JTextField EditPhone;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnEdit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

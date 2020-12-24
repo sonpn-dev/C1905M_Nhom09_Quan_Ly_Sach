@@ -62,7 +62,7 @@ public class AddStaff extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnAdd.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save_64.png"))); // NOI18N
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tick_64.png"))); // NOI18N
         btnAdd.setText("Lưu");
         btnAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAdd.setMaximumSize(new java.awt.Dimension(115, 93));
@@ -90,9 +90,10 @@ public class AddStaff extends javax.swing.JDialog {
         });
 
         btnBack1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnBack1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/left_64.png"))); // NOI18N
+        btnBack1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons8_update_50px.png"))); // NOI18N
         btnBack1.setText("Làm mới");
         btnBack1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnBack1.setMargin(new java.awt.Insets(10, 14, 2, 14));
         btnBack1.setMaximumSize(new java.awt.Dimension(115, 93));
         btnBack1.setMinimumSize(new java.awt.Dimension(115, 93));
         btnBack1.setPreferredSize(new java.awt.Dimension(115, 93));
@@ -222,7 +223,8 @@ public class AddStaff extends javax.swing.JDialog {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
-        // TODO add your handling code here:
+        Phone.setText("");
+        StaffName.setText("");
     }//GEN-LAST:event_btnBack1ActionPerformed
 
     private void PhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PhoneActionPerformed
